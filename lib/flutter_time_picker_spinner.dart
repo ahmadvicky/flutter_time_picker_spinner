@@ -223,7 +223,7 @@ class _TimePickerSpinnerState extends State<TimePickerSpinner> {
       spacer(),
       !widget.isMinutesScroll ?
       Container(
-        margin: EdgeInsets.only(top: 45,left: 20,right: 10),
+        margin: EdgeInsets.only(top: 41,left: 20,right: 10),
         width: _getItemWidth(),
         height: _getItemHeight(),
         child: Text('00'),

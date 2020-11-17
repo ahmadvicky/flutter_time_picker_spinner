@@ -74,6 +74,7 @@ class TimePickerSpinner extends StatefulWidget {
   final double spacing;
   final bool isForce2Digits;
   final TimePickerCallback onTimeChange;
+  final bool isMinutesScroll;
 
   TimePickerSpinner({
     Key key,
@@ -89,7 +90,8 @@ class TimePickerSpinner extends StatefulWidget {
     this.alignment,
     this.spacing,
     this.isForce2Digits = false,
-    this.onTimeChange
+    this.onTimeChange,
+    this.isMinutesScroll
   }) : super(key: key);
 
   @override
@@ -219,6 +221,13 @@ class _TimePickerSpinnerState extends State<TimePickerSpinner> {
         ),
       ),
       spacer(),
+      !widget.isMinutesScroll ?
+      Container(
+        margin: EdgeInsets.only(top: 45,left: 20,right: 10),
+        width: _getItemWidth(),
+        height: _getItemHeight(),
+        child: Text('00'),
+      ):
       new SizedBox(
         width: _getItemWidth(),
         height: _getItemHeight() * 3,
@@ -226,11 +235,11 @@ class _TimePickerSpinnerState extends State<TimePickerSpinner> {
             minuteController,
             _getMinuteCount(),
             currentSelectedMinuteIndex,
-            isMinuteScrolling,
+            false,
             widget.minutesInterval,
             (index) {
               currentSelectedMinuteIndex = index;
-              isMinuteScrolling = true;
+              isMinuteScrolling = false;
             },
             () => isMinuteScrolling = false,
         ),
